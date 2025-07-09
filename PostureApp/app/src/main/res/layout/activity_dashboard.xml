@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dashboardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img" ><!-- Dashboard background -->
+
+
+    <!-- Flex Sensor -->
+<TextView
+android:id="@+id/flexValue"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Flex Sensor: --"
+android:textSize="20sp"
+android:textColor="#000000"
+android:layout_alignParentTop="true"
+android:layout_marginTop="48dp"
+android:layout_centerHorizontal="true" />
+
+    <!-- Gyroscope Container -->
+<LinearLayout
+android:id="@+id/gyroContainer"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@id/flexValue"
+android:layout_marginTop="24dp"
+android:orientation="vertical"
+android:background="@drawable/box_background"
+android:padding="16dp"
+android:elevation="4dp"
+android:layout_centerHorizontal="true">
+
+<TextView
+    android:id="@+id/gyroXValue"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Gyro X: --"
+    android:textSize="18sp"
+    android:textColor="#000000" />
+
+<TextView
+    android:id="@+id/gyroYValue"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Gyro Y: --"
+    android:textSize="18sp"
+    android:textColor="#000000" />
+
+<TextView
+    android:id="@+id/gyroZValue"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Gyro Z: --"
+    android:textSize="18sp"
+    android:textColor="#000000" />
+</LinearLayout>
+
+    <!-- Posture status -->
+<TextView
+android:id="@+id/postureStatus"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@id/gyroContainer"
+android:layout_marginTop="24dp"
+android:layout_centerHorizontal="true"
+android:text="Posture: Unknown"
+android:textSize="20sp"
+android:textColor="#FFFFFF"
+android:gravity="center"
+android:background="@drawable/fancy_border"
+android:padding="16dp" />
+    </RelativeLayout>
