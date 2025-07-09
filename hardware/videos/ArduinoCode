@@ -1,0 +1,60 @@
+#include <Wire.h>
+#include <MPU6050.h>
+
+MPU6050 mpu;
+
+const int flexPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+  Wire.begin();
+
+  // Initialize MPU6050
+  Serial.println("Initializing MPU6050...");
+  mpu.initialize();
+
+  if (mpu.testConnection()) {
+    Serial.println("MPU6050 connection successful");
+  } else {
+    Serial.println("MPU6050 connection failed");
+    while (1); // Stop execution
+  }
+}
+
+void loop() {
+  // Read flex sensor
+  int flexValue = analogRead(flexPin);
+
+  // Read gyro data
+  int16_t ax, ay, az;
+  int16_t gx, gy, gz;
+  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+
+  // Display sensor values
+  Serial.print("Flex: ");
+  Serial.print(flexValue);
+  Serial.print(" | GyroX: ");
+  Serial.print(gx);
+  Serial.print(" | GyroY: ");
+  Serial.print(gy);
+  Serial.print(" | GyroZ: ");
+  Serial.print(gz);
+
+  // Check posture condition
+  bool badPosture = false;
+
+  if (flexValue > 650 ||
+      abs(gx) > 2000 ||
+      abs(gy) > 2000 ||
+      abs(gz) > 2000) {
+    badPosture = true;
+  }
+
+  if (badPosture) {
+    Serial.println(" --> Bad Posture ❌");
+  } else {
+    Serial.println(" --> Good Posture ✅");
+  }
+
+  delay(300); // Small delay for readability
+}
